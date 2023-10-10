@@ -10,7 +10,8 @@ This repository contains the implementation of [_k-Strip_](https://arxiv.org/abs
 
 #### Project content & structure
 
-![cResUNet](Figures/cResUNet.png)
+![ResUNet](Figures/cResUNet_dark.png#gh-dark-mode-only)
+![ResUNet](Figures/cResUNet_light.png#gh-light-mode-only)
 
 This repository provides the architecture of a complex valued neural network in the style of a residual UNet.
 
@@ -126,11 +127,11 @@ options:
 The network expects a certain datastructure which is shown below.
 ```bash  
 ├── .../train  
-        ├── orig
-        └── label  
+│       ├── orig
+│       └── label  
 ├── .../val  
-        ├── orig
-        └── label  
+│       ├── orig
+│       └── label  
 └── .../test  
         ├── orig
         └── label  
