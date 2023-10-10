@@ -43,7 +43,7 @@ Toggle the lists below to see an overview of implemented layer, blocks and activ
 - cBatchNorm
 - cConvolution
 - cDoubleConvolution
-- cRsidualBlock
+- cResidualBlock
 - cTransposedConvolution
 - Spectral Pooling
 - cDropout
