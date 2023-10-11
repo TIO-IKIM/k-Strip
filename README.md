@@ -80,9 +80,12 @@ In case of installation issues with conda, use pip install -r requirements.txt t
 
 ## Usage
 
+The repository includes an exemple for preparing the [CC-359](https://www.ccdataset.com/download) for training the network by transforming it into fourier transformed 2D .pt slices. You can find the script at ```src/utils/prepare_data.py```.
+Just download the dataset and adjust the paths in the script accordingly.  
+
 **Training CLI**
 
-```bash
+```
 usage: Training [-h] [--e E] [--log LOG] [--tqdm] [--gpu GPU] [--config CONFIG] [--load LOAD]
                 [--load_checkpoint LOAD_CHECKPOINT]
 
@@ -103,7 +106,7 @@ Checkpoints of the model and examples of the validation results are saved every 
 
 **Testing CLI**
 
-```bash
+```
 usage: Tester [-h] [--config CONFIG] [--e] [--perc PERC] [--num_zero NUM_ZERO] [--eval_num EVAL_NUM]
               [--id ID] [--c C] [--device DEVICE]
 
