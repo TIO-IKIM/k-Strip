@@ -301,8 +301,6 @@ class TrainNetwork:
             if args.tqdm == True:
                 loop.set_postfix(loss=loss.item())
 
-            break
-
         self.scheduler.step()
         self.total_loss = total_loss / len(self.train_loader)
 
