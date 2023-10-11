@@ -8,7 +8,9 @@
 
 This repository contains the implementation of [_k-Strip_](https://arxiv.org/abs/2205.09706), a complex valued convolutional neural network (CVNN) based method for automated skull stripping directly in the k-space, the raw data domain of MRI scans.
 
-#### Project content & structure
+This work is part of the **k-Radiomics** project. For more information, please visit our project-website https://k-radiomics.ikim.nrw.
+
+## Project content & structure
 
 ![ResUNet](Figures/cResUNet_dark.png#gh-dark-mode-only)
 ![ResUNet](Figures/cResUNet_light.png#gh-light-mode-only)
@@ -41,7 +43,7 @@ Toggle the lists below to see an overview of implemented layer, blocks and activ
 - cBatchNorm
 - cConvolution
 - cDoubleConvolution
-- cRsidualBlock
+- cResidualBlock
 - cTransposedConvolution
 - Spectral Pooling
 - cDropout
@@ -65,7 +67,7 @@ Toggle the lists below to see an overview of implemented layer, blocks and activ
 - cLogReLU
 </details>
 
-#### Getting started
+## Getting started
 1. Clone repository: ```git clone https://github.com/TIO-IKIM/k-Strip.git```.
    >Note: The training & testing scripts expect the repository to be saved directly in the home directory (```Path.home()```). If this is not the case, you just need to insert the correct path in the scripts.
 2. Create a conda environment with Python version 3.11.2 and install the necessary dependencies: ```conda env -n k-strip python=3.11.2 -f requirements.txt```.
@@ -76,7 +78,7 @@ In case of installation issues with conda, use pip install -r requirements.txt t
    > Note: The training config is already filled with the settings used for our publication, but you can change all parameters as you wish ... until you break it.
 
 
-#### Usage
+## Usage
 
 **Training CLI**
 
@@ -122,7 +124,7 @@ options:
   --device DEVICE      Cuda device to run test on.
 ```
 
-#### Datastructure
+## Datastructure
 
 The network expects a certain datastructure which is shown below.
 ```bash  
@@ -137,7 +139,7 @@ The network expects a certain datastructure which is shown below.
         └── label  
 ```
 
-#### Citation
+## Citation
 
 If you use our code in your work, please cite us with the following BibTeX entry.
 ```latex
