@@ -153,10 +153,12 @@ The network expects a certain datastructure which is shown below.
 
 If you use our code in your work, please cite us with the following BibTeX entry.
 ```latex
-@article{rempe2022k,
+@article{rempe2023k,
   title={k-strip: A novel segmentation algorithm in k-space for the application of skull stripping},
   author={Rempe, Moritz and Mentzel, Florian and Pomykala, Kelsey L and Haubold, Johannes and Nensa, Felix and Kr{\"o}ninger, Kevin and Egger, Jan and Kleesiek, Jens},
-  journal={arXiv preprint arXiv:2205.09706},
-  year={2022}
+  journal={Computer Methods and Programs in Biomedicine},
+  pages={107912},
+  year={2023},
+  publisher={Elsevier}
 }
 ```
