@@ -7,7 +7,7 @@ import torch
 
 
 @torch.jit.script
-def ifft(scan: torch.Tensor) -> torch.Tensor:
+def ifft(scan: torch.Tensor, dim: tuple[int, int] = (-2, -1)) -> torch.Tensor:
     """Calculate the inverse fourier transform of an complex valued input tensor
     in the k-space (frequency domain) to transform it into image space.
 
@@ -18,6 +18,7 @@ def ifft(scan: torch.Tensor) -> torch.Tensor:
     Args:
         scan (torch.Tensor): Complex valued 2D (H X W), 3D (C X H X W), 4D (B x C x H x W) or 5D (B x C x H x W x D)
             input tensor in k-space.
+        dim (tuple[int, int]): Dimension over which to perform the transformation.
 
     Returns:
         torch.Tensor: Complex valued inverse fourier transformed 4D or 5D tensor in image space.
@@ -31,23 +32,23 @@ def ifft(scan: torch.Tensor) -> torch.Tensor:
         scan = torch.fft.ifft2(scan)
         scan = torch.fft.fftshift(scan)
     elif scan.ndim == 3:
-        scan = torch.fft.ifftshift(scan, dim=(1, 2))
-        scan = torch.fft.ifft2(scan, dim=(1, 2))
-        scan = torch.fft.fftshift(scan, dim=(1, 2))
+        scan = torch.fft.ifftshift(scan, dim=dim)
+        scan = torch.fft.ifft2(scan, dim=dim)
+        scan = torch.fft.fftshift(scan, dim=dim)
     elif scan.ndim == 4:
-        scan = torch.fft.ifftshift(scan, dim=(2, 3))
-        scan = torch.fft.ifftn(scan, dim=(2, 3))
-        scan = torch.fft.fftshift(scan, dim=(2, 3))
+        scan = torch.fft.ifftshift(scan, dim=dim)
+        scan = torch.fft.ifftn(scan, dim=dim)
+        scan = torch.fft.fftshift(scan, dim=dim)
     elif scan.ndim == 5:
-        scan = torch.fft.ifftshift(scan, dim=(2, 3))
-        scan = torch.fft.ifftn(scan, dim=(2, 3))
-        scan = torch.fft.fftshift(scan, dim=(2, 3))
+        scan = torch.fft.ifftshift(scan, dim=dim)
+        scan = torch.fft.ifftn(scan, dim=dim)
+        scan = torch.fft.fftshift(scan, dim=dim)
 
     return scan
 
 
 @torch.jit.script
-def fft(scan: torch.Tensor) -> torch.Tensor:
+def fft(scan: torch.Tensor, dim: tuple[int, int] = (-2, -1)) -> torch.Tensor:
     """Calculate the fourier transform of an complex valued input tensor
     in the image domain to transform it into the k-space (frequency domain).
 
@@ -58,6 +59,7 @@ def fft(scan: torch.Tensor) -> torch.Tensor:
     Args:
         scan (torch.Tensor): Complex valued 2D (H X W), 3D (C X H X W), 4D (B x C x H x W) or 5D (B x C x H x W x D)
             input tensor in image space.
+        dim (tuple[int, int]): Dimension over which to perform the transformation.
 
     Returns:
         torch.Tensor: Complex valued inverse fourier transformed 4D or 5D tensor in k-space.
@@ -72,16 +74,16 @@ def fft(scan: torch.Tensor) -> torch.Tensor:
         scan = torch.fft.fft2(scan)
         scan = torch.fft.fftshift(scan)
     elif scan.ndim == 3:
-        scan = torch.fft.ifftshift(scan, dim=(1, 2))
-        scan = torch.fft.fft2(scan, dim=(1, 2))
-        scan = torch.fft.fftshift(scan, dim=(1, 2))
+        scan = torch.fft.ifftshift(scan, dim=dim)
+        scan = torch.fft.fft2(scan, dim=dim)
+        scan = torch.fft.fftshift(scan, dim=dim)
     elif scan.ndim == 4:
-        scan = torch.fft.ifftshift(scan, dim=(2, 3))
-        scan = torch.fft.fftn(scan, dim=(2, 3))
-        scan = torch.fft.fftshift(scan, dim=(2, 3))
+        scan = torch.fft.ifftshift(scan, dim=dim)
+        scan = torch.fft.fftn(scan, dim=dim)
+        scan = torch.fft.fftshift(scan, dim=dim)
     elif scan.ndim == 5:
-        scan = torch.fft.ifftshift(scan, dim=(2, 3))
-        scan = torch.fft.fftn(scan, dim=(2, 3))
-        scan = torch.fft.fftshift(scan, dim=(2, 3))
+        scan = torch.fft.ifftshift(scan, dim=dim)
+        scan = torch.fft.fftn(scan, dim=dim)
+        scan = torch.fft.fftshift(scan, dim=dim)
 
     return scan
