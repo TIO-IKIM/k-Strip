@@ -68,12 +68,19 @@ Toggle the lists below to see an overview of implemented layer, blocks and activ
 </details>
 
 ## Getting started
-1. Clone repository: ```git clone https://github.com/TIO-IKIM/k-Strip.git```.
+1. Clone repository:
+   
+       git clone https://github.com/TIO-IKIM/k-Strip.git
    >Note: The training & testing scripts expect the repository to be saved directly in the home directory (```Path.home()```). If this is not the case, you just need to insert the correct path in the scripts.
-2. Create a conda environment with Python version 3.11.2 and install the necessary dependencies: ```conda env -n k-strip python=3.11.2 -f requirements.txt```.
-In case of installation issues with conda, use pip install -r requirements.txt to install the dependecies.
+2. Create a conda environment with Python version 3.11.2 and install the necessary dependencies:
+   
+       conda env -n k-strip python=3.11.2 -f requirements.txt
+    In case of installation issues with conda, use pip install -r requirements.txt to install the dependecies.
     >Note: The PyTorch version used needs CuDA 11.7 installed. You can change the PyTorch version in the requirements file.
-3. Activate your new environment: ```conda activate k-strip```.
+3. Activate your new environment:
+
+       conda activate k-strip
+   
 4. Insert all necesarry paths to your training / testing data in the config files in ```src/configs``` and you should be all set to start training your own CVNN!
    > Note: The training config is already filled with the settings used for our publication, but you can change all parameters as you wish ... until you break it.
 
@@ -146,10 +153,12 @@ The network expects a certain datastructure which is shown below.
 
 If you use our code in your work, please cite us with the following BibTeX entry.
 ```latex
-@article{rempe2022k,
+@article{rempe2023k,
   title={k-strip: A novel segmentation algorithm in k-space for the application of skull stripping},
   author={Rempe, Moritz and Mentzel, Florian and Pomykala, Kelsey L and Haubold, Johannes and Nensa, Felix and Kr{\"o}ninger, Kevin and Egger, Jan and Kleesiek, Jens},
-  journal={arXiv preprint arXiv:2205.09706},
-  year={2022}
+  journal={Computer Methods and Programs in Biomedicine},
+  pages={107912},
+  year={2023},
+  publisher={Elsevier}
 }
 ```
