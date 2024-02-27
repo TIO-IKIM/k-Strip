@@ -6,7 +6,7 @@
 
 </div>
 
-This repository contains the implementation of [_k-Strip_](https://arxiv.org/abs/2205.09706), a complex valued convolutional neural network (CVNN) based method for automated skull stripping directly in the k-space, the raw data domain of MRI scans.
+This repository contains the implementation of [_k-Strip_](https://www.sciencedirect.com/science/article/pii/S0169260723005783?via%3Dihub), a complex valued convolutional neural network (CVNN) based method for automated skull stripping directly in the k-space, the raw data domain of MRI scans.
 
 This work is part of the **k-Radiomics** project. For more information, please visit our project-website https://k-radiomics.ikim.nrw.
 
