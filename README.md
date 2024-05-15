@@ -74,7 +74,7 @@ Toggle the lists below to see an overview of implemented layer, blocks and activ
    >Note: The training & testing scripts expect the repository to be saved directly in the home directory (```Path.home()```). If this is not the case, you just need to insert the correct path in the scripts.
 2. Create a conda environment with Python version 3.11.2 and install the necessary dependencies:
    
-       conda env -n k-strip python=3.11.2 -f requirements.txt
+       conda create --name k-strip python=3.11.2 --file requirements.txt
     In case of installation issues with conda, use pip install -r requirements.txt to install the dependecies.
     >Note: The PyTorch version used needs CuDA 11.7 installed. You can change the PyTorch version in the requirements file.
 3. Activate your new environment:
