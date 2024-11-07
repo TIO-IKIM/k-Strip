@@ -1,3 +1,7 @@
 src/models/__pycache__
 src/utils/__pycache__
 src/models/layer/__pycache__
+logs/
+output/
+src/notebooks/test_model.ipynb
+src/test.png

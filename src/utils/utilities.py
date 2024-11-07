@@ -250,20 +250,20 @@ def complex_save_predictions_as_imgs(
                     outputs = [
                         (x_ifft.abs()[:, 0, None, ...], f"{folder}/orig_{epoch}.png"),
                         (
-                            torch.log(orig_strips.abs()[:, c, None, ...]),
-                            f"{folder}/orig_seg_kspace_{epoch}.png",
-                        ),
-                        (
-                            torch.log(pred_strip.abs()[:, c, None, ...]),
-                            f"{folder}/pred_seg_kspace_{epoch}.png",
+                            pred_strip_ifft.angle()[:, c, None, ...],
+                            f"{folder}/pred_seg_pha_{epoch}.png",
                         ),
                         (
                             orig_strips_ifft.abs()[:, c, None, ...],
                             f"{folder}/{epoch}.png",
                         ),
                         (
+                            orig_strips_ifft.angle()[:, c, None, ...],
+                            f"{folder}/{epoch}_pha.png",
+                        ),
+                        (
                             pred_strip_ifft.abs()[:, c, None, ...],
-                            f"{folder}/pred_seg_{epoch}.png",
+                            f"{folder}/pred_seg_abs_{epoch}.png",
                         ),
                     ]
                 elif imagespace == True:

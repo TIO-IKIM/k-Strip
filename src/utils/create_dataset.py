@@ -72,7 +72,7 @@ class CreateDataset:
         """
         Load a tensor from a given path.
         """
-        return torch.load(path, map_location="cpu")
+        return torch.load(path, map_location="cpu", weights_only=True)
 
     def __getitem__(self, idx):
         """
@@ -95,6 +95,9 @@ class CreateDataset:
         self.y = (self.y).cfloat()
         self.x = self.x[None, ...]
         self.y = self.y[None, ...]
+        if torch.isnan(self.x).any() or torch.isnan(self.y).any():
+            self.x[torch.isnan(self.x)] = 0
+            self.y[torch.isnan(self.y)] = 0
 
         if self.augmentation:
             self.x, self.y = self.augmentation(self.x, self.y)
@@ -117,21 +120,24 @@ class CreateDataset:
         """
         Perform standardization on the data.
         """
-        self.x = (self.x - self.x.mean()) / self.x.std()
-        self.y = (self.x - self.y.mean()) / self.y.std()
+        y_std = self.y.std()
+        x_std = self.x.std()
+        
+        if x_std != 0:
+            self.x = ((self.x.abs() - self.x.mean()) / x_std) * torch.exp(1j * self.x.angle())
+        if y_std != 0:
+            self.y = ((self.y.abs() - self.y.mean()) / y_std) * torch.exp(1j * self.y.angle())
 
     def scaling(self) -> None:
         """
         Perform scaling on the data.
         """
-        X_abs = (self.x.abs() - 0) / (28717861.8594 - 0)
-        X_angle = self.x.angle()
-        Y_abs = (self.y.abs() - 0) / (13186685.1562 - 0)
-        Y_angle = self.y.angle()
-
-        self.x = X_abs * torch.exp(1j * X_angle)
-        self.y = Y_abs * torch.exp(1j * Y_angle)
-
+        x_std = self.x.std()
+        y_std = self.y.std()
+        if x_std != 0:
+            self.x = self.x / x_std
+        if y_std != 0:
+            self.y = self.y / y_std
 
 def get_loaders(
     train_path: str,

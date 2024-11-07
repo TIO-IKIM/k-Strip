@@ -36,7 +36,7 @@ parser.add_argument(
     "--tqdm", action="store_false", help="If set, do not log training loss via tqdm."
 )
 parser.add_argument(
-    "--gpu", type=int, nargs="+", default=2, help="GPU used for training."
+    "--gpu", type=int, nargs="+", default=0, help="GPU used for training."
 )
 parser.add_argument(
     "--config",
@@ -243,6 +243,7 @@ class TrainNetwork:
             "selu": A.ComplexSELU,
             "cardioid": A.ComplexCardioid,
             "amprelu": A.AmplitudeRelu,
+            "prelu": A.ComplexPReLU,
         }
         selected_activation = config["activation"]
         assert (
@@ -467,7 +468,7 @@ if __name__ == "__main__":
     torch.backends.cudnn.allow_tf32 = True
 
     args = parser.parse_args()
-    args.config = Path.home() / "k-Strip" / "src" / "configs" / args.config
+    args.config = Path.home() / "k-radiomics-storage/k-radiomics" / "k-Strip" / "src" / "configs" / args.config
 
     with open(args.config, "r") as conf:
         config = yaml.safe_load(conf)
@@ -476,7 +477,7 @@ if __name__ == "__main__":
 
     ikim_logger = IKIMLogger(
         level=args.log,
-        log_dir=Path.home() / "k-Strip" / "logs",
+        log_dir=Path.home() / "k-radiomics-storage/k-radiomics" / "k-Strip" / "logs",
         comment=(
             f"train_{config['model']}_{config['loss']}_{config['activation']}_"
             f"{config['transformation']}_p{config['dropout']}_{config['features']}_{config['lr']}_"
